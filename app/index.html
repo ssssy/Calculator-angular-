@@ -1,0 +1,77 @@
+<!doctype html>
+<html ng-app='app'>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <style>
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button{ 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0; 
+        }
+    </style>
+    </head>
+    <body ng-controller="dropdown"  ng-init="init()">
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <nav class="navbar navbar-inverse">
+                  <div class="container-fluid">
+                    <div class="navbar-header">
+                      <a class="navbar-brand" href="#">
+                        Regional Rail calculator
+                      </a>
+                    </div>
+                  </div>
+                </nav>
+                </div>
+                <div class="col-md-12">
+                    <h2>1. where are you going</h2>
+                    <select ng-options="key for (key,value) in data.zones" ng-model="selected.zone"><option value="">--Pick your riding zone--</option></select>
+                </div>
+
+                <div class="col-md-12">
+                    <h2>2. when you going to ride</h2>
+                    <select ng-model="selected.type" ng-options="key for (key,value) in selected.zone"><option value="">-- choose riding time --</option></select>
+                </div>
+
+                <div class="col-md-12">
+                    <h2>3. where will you purchasing the fare</h2>
+                 <select ng-model="selected.location" ng-options="key for (key,value) in selected.type"><option value="">-- choose where to buy --</option></select>
+                </div>
+
+             <div class="col-md-12">
+                    <h2>4. How many rides will you need</h2>
+                    <input type="number" class="form-control"  ng-model="selected.trips" step="{{selected.location.trips}}" min="0">
+                </div>
+                <hr/><hr/>
+
+                <map locations="data"></map>
+                <div class="col-md-12" style="padding-top:30px;">
+                    <div class="panel panel-info">
+                      <div class="panel-heading"><h2>Your fare will cost</h2></div>
+                      <div class="panel-body">
+
+                        {{selected.trips * selected.location.price/selected.location.trips}}
+                      </div>
+                </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+        <script   src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    </body>
+</html>

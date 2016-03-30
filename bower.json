@@ -1,0 +1,14 @@
+{
+  "name": "easyui-scaffold",
+  "dependencies": {
+    "angular": "git://github.com/angular/bower-angular.git"
+  },
+  "authors": [
+    "yichao <yshen2222@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": ""
+}
